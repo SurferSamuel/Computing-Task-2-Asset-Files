@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Camera
   - Obstacles
-  - 
+  - User Interface
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1830665989
+    locked: 0
+  - name: User Interface
+    uniqueID: 4153552065
     locked: 0
