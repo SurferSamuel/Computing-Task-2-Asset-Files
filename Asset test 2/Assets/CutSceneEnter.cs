@@ -5,29 +5,30 @@ using UnityEngine;
 public class CutSceneEnter : MonoBehaviour
 {
     public GameObject thePlayer;
+	public GameObject aStar;
     public GameObject cutSceneCam;
-    public GameObject theEagle;
     public BoxCollider2D cameraHitbox;
 
     void Start()
     {
         cutSceneCam.SetActive(false);
-        theEagle.SetActive(false);
+        aStar.SetActive(false);
     }
 
     void OnCollisionEnter2D(Collision2D CollisionInfo)
     {
         cameraHitbox.enabled = false;
         cutSceneCam.SetActive(true);
-        thePlayer.SetActive(false);
-        theEagle.SetActive(true);
+        thePlayer.GetComponent<PlayerMovement>().enabled = false;
         StartCoroutine(FinishCut());
     }
 
     IEnumerator FinishCut()
     {
-        yield return new WaitForSeconds(5);
-        thePlayer.SetActive(true);
+        yield return new WaitForSeconds(2);
+		aStar.SetActive(true);
+		yield return new WaitForSeconds(3);
+        thePlayer.GetComponent<PlayerMovement>().enabled = true;
         cutSceneCam.SetActive(false);
     }
 }
