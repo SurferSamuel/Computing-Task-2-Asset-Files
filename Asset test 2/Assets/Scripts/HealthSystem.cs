@@ -39,6 +39,7 @@ public class HealthSystem : MonoBehaviour
 				{
 					gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 400f));
 					eagle.GetComponent<EagleController>().dead();
+					gameObject.GetComponent<CameraShake>().cameraShake();
 				} else
 				{
 					invincible = true;
