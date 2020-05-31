@@ -30,6 +30,12 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
+    void Start()
+    {
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerMovement>().enabled = true;
+    }
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
