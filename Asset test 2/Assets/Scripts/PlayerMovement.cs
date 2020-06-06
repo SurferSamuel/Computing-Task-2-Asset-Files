@@ -13,6 +13,14 @@ public class PlayerMovement : MonoBehaviour {
     bool jump = false;
     bool crouch = false;
 
+    private AudioSource jumpEffect;
+
+    void Start()
+    {
+        var audio = GetComponents<AudioSource>();
+        jumpEffect = audio[2];
+    }
+
     void Update() 
     {
 
@@ -22,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
+            if (gameObject.GetComponent<Rigidbody2D>().velocity.y < 0.1 && gameObject.GetComponent<Rigidbody2D>().velocity.y > -0.1)
+                jumpEffect.Play();
             animator.SetBool("IsJumping", true);
             jump = true;
         }

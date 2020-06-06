@@ -8,16 +8,22 @@ public class ItemPickup : MonoBehaviour
     private GameObject player = null;
     private bool trigger = true;
 
+    private AudioSource pickupEffect;
+
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         player = GameObject.Find("Player");
+
+        var audio = player.GetComponents<AudioSource>();
+        pickupEffect = audio[1];
     }
 
     void OnTriggerEnter2D(Collider2D CollisionInfo)
     {
         if (CollisionInfo.gameObject.name == "Player")
         {
+            pickupEffect.Play();
             pickup();
         }
     }
