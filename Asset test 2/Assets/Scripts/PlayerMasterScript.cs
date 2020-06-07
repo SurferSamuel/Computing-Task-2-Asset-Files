@@ -89,7 +89,7 @@ public class PlayerMasterScript : MonoBehaviour
         {
             foreach (Transform child in enemyChildren)
             {
-                if (isFalling == true && child.position.y + 1 < gameObject.transform.position.y)
+                if (isFalling == true && child.position.y + 1 < gameObject.transform.position.y && Vector3.Distance(child.transform.position, gameObject.transform.position) < 2)
                 {
                     explosionEffect.Play();
                     gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 200f));

@@ -11,11 +11,12 @@ public class AmbientMusicManager : MonoBehaviour
 
         if (PauseMenu.GameIsPaused)
         {
-            aMusic.pitch = .75f;
+            aMusic.Pause();
         }
         else
         {
-            aMusic.pitch = 1f;
+            aMusic.UnPause();
         }
     }
+
 }

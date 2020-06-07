@@ -7,11 +7,27 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
+    public AudioSource audioSource;
 
-    void Awake()
+    private float originalVolume;
+
+    void Start()
     {
+        originalVolume = audioSource.volume;
+        audioSource.volume = 0f;
+        StartCoroutine(FadeInAudio());
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
+    }
+
+    IEnumerator FadeInAudio()
+    {
+        float speed = originalVolume / 10;
+        while (audioSource.volume < originalVolume)
+        {
+            audioSource.volume += speed;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void Update()
