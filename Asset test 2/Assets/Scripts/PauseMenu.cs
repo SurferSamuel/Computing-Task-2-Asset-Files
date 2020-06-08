@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
 
     private float originalVolume;
 
+    public LevelLoader levelLoader;
+
     void Start()
     {
         originalVolume = audioSource.volume;
@@ -27,6 +29,16 @@ public class PauseMenu : MonoBehaviour
         {
             audioSource.volume += speed;
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator FadeOutAudio()
+    {
+        float speed = originalVolume / 10;
+        while (audioSource.volume > 0f)
+        {
+            audioSource.volume -= speed;
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
@@ -58,6 +70,19 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void LoadMainMenu()
+    {
+        StartCoroutine(FadeOutAudio());
+        levelLoader.LoadMainMenu();
+        StartCoroutine(GameIsPausedRefresh());
+    }
+
+    IEnumerator GameIsPausedRefresh()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        GameIsPaused = false;
     }
 
     public void Quit()

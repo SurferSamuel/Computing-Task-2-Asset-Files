@@ -14,7 +14,7 @@ public class PlayerMasterScript : MonoBehaviour
     public int invincibleTime = 2;
 
     private bool invincible = false;
-	private bool isFalling = false;
+    private bool isFalling = false;
     private int takedamagecount = 0;
 
     private GameObject enemies = null;
@@ -24,6 +24,8 @@ public class PlayerMasterScript : MonoBehaviour
     private AudioSource deathEffect;
     private AudioSource damageEffect;
     private bool deatEffectTrigger = true;
+
+    public Animator crossfadeAnimator;
 
     void Start()
     {
@@ -142,7 +144,9 @@ public class PlayerMasterScript : MonoBehaviour
 
     IEnumerator RestartLevel()
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(.8f);
+        crossfadeAnimator.SetBool("Crossfade Trigger", true);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }  

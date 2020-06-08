@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     private float originalVolume;
 
-    void Awake()
+    void Start()
     {
         originalVolume = audioSource.volume;
         audioSource.volume = 0f;

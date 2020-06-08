@@ -16,7 +16,20 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Crossfade Trigger");
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSecondsRealtime(transitionTime);
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadMain(SceneManager.GetActiveScene().buildIndex - 1));
+    }
+
+    IEnumerator LoadMain(int levelIndex)
+    {
+        transition.SetTrigger("Crossfade Trigger");
+        yield return new WaitForSecondsRealtime(transitionTime);
+        SceneManager.LoadScene(levelIndex);
+        Time.timeScale = 1f;
     }
 }
