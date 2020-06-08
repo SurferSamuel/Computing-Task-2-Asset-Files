@@ -22,7 +22,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        StartCoroutine(LoadMain(SceneManager.GetActiveScene().buildIndex - 1));
+        StartCoroutine(LoadMain(1));
     }
 
     IEnumerator LoadMain(int levelIndex)

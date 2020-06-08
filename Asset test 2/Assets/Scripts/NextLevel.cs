@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+    public LevelLoader levelLoader;
+    
     private GameObject player;
 
     void Start()
@@ -18,14 +20,7 @@ public class NextLevel : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Animator>().SetFloat("Speed", 0f);
-            StartCoroutine(RestartLevel());
+            levelLoader.LoadNextLevel();
         }
-    }
-
-    // change this to next level
-    IEnumerator RestartLevel()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
