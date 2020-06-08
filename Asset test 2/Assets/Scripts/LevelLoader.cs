@@ -27,8 +27,10 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadMain(int levelIndex)
     {
+        transition.updateMode = AnimatorUpdateMode.UnscaledTime;
         transition.SetTrigger("Crossfade Trigger");
         yield return new WaitForSecondsRealtime(transitionTime);
+        transition.updateMode = AnimatorUpdateMode.Normal;
         SceneManager.LoadScene(levelIndex);
         Time.timeScale = 1f;
     }
