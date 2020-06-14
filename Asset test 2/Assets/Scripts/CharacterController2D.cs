@@ -30,10 +30,15 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
+    private AudioSource jumpEffect;
+
     void Start()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = false;
         gameObject.GetComponent<PlayerMovement>().enabled = true;
+
+        var audio = GetComponents<AudioSource>();
+        jumpEffect = audio[2];
     }
 
 	private void Awake()
@@ -132,8 +137,9 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
-			// Add a vertical force to the player.
-			m_Grounded = false;
+            // Add a vertical force to the player.
+            jumpEffect.Play();
+            m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}

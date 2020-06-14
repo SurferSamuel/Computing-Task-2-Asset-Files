@@ -77,7 +77,7 @@ public class PlayerMasterScript : MonoBehaviour
                 {
                     explosionEffect.Play();
                     gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 200f));
-                    gameObject.GetComponent<CameraShake>().cameraShake();
+                    gameObject.GetComponent<CameraShake>().cameraShake(1);
                     child.GetComponent<EagleController>().dead();
                 }
                 else if (Vector3.Distance(child.transform.position, gameObject.transform.position) < 2)
@@ -95,7 +95,7 @@ public class PlayerMasterScript : MonoBehaviour
                 {
                     explosionEffect.Play();
                     gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 200f));
-                    gameObject.GetComponent<CameraShake>().cameraShake();
+                    gameObject.GetComponent<CameraShake>().cameraShake(1);
                     child.GetComponent<EagleController>().dead();
                 }
             }
