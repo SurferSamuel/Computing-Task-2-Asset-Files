@@ -23,7 +23,7 @@ public class PlayerMasterScript : MonoBehaviour
     private AudioSource explosionEffect;
     private AudioSource deathEffect;
     private AudioSource damageEffect;
-    private bool deatEffectTrigger = true;
+    private bool deathEffectTrigger = true;
 
     public Animator crossfadeAnimator;
 
@@ -63,7 +63,7 @@ public class PlayerMasterScript : MonoBehaviour
         if (currentHealth <= 0)
         {
             Dead();
-            deatEffectTrigger = false;
+            deathEffectTrigger = false;
         }
     }
 
